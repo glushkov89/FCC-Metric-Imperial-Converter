@@ -150,19 +150,47 @@ suite("Unit Tests", function () {
 		});
 
 		test("Mi to Km", function (done) {
-			done('Not implemented.');
+			var input = [1 / 16, "mi"];
+			var expected = 0.10058;
+			assert.approximately(
+				convertHandler.convert(input[0], input[1]),
+				expected,
+				0.1
+			); //0.1 tolerance
+			done();
 		});
 
 		test("Km to Mi", function (done) {
-			done('Not implemented.');
+			var input = [2.45, "km"];
+			var expected = 3.94288;
+			assert.approximately(
+				convertHandler.convert(input[0], input[1]),
+				expected,
+				0.1
+			); //0.1 tolerance
+			done();
 		});
 
 		test("Lbs to Kg", function (done) {
-			done('Not implemented.');
+			var input = [0.25, "lbs"];
+			var expected = 0.11339;
+			assert.approximately(
+				convertHandler.convert(input[0], input[1]),
+				expected,
+				0.1
+			); //0.1 tolerance
+			done();
 		});
 
 		test("Kg to Lbs", function (done) {
-			done('Not implemented.');
+			var input = [30.25 / 20, "kg"];
+			var expected = 3.33449;
+			assert.approximately(
+				convertHandler.convert(input[0], input[1]),
+				expected,
+				0.1
+			); //0.1 tolerance
+			done();
 		});
 	});
 });

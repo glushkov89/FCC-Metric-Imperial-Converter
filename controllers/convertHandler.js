@@ -29,7 +29,6 @@ function ConvertHandler() {
 			result = "invalid unit";
 		} else {
 			unit = unit[0].toLowerCase();
-			console.log(unit);
 			switch (unit) {
 				case "gal":
 				case "l":
@@ -116,10 +115,10 @@ function ConvertHandler() {
 				result = initNum / lbsToKg;
 				break;
 			case "mi":
-				result = initNum * miToKm;
+				result = initNum / miToKm;
 				break;
 			case "km":
-				result = initNum / miToKm;
+				result = initNum * miToKm;
 				break;
 		}
 		return result;
