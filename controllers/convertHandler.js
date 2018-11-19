@@ -10,11 +10,9 @@ function ConvertHandler() {
 	this.getNum = function (input) {
 		var result = 0;
 		var number = input.replace(/[a-z].*/i, "");
-		console.log(number);
 		if (number === "") return 1;
 		if (number.match(/[^\/\d.]/gi)) return "invalid number";
 		number = number.split("/");
-		console.log(number);
 		if (number.length > 2) return "invalid number";
 		if (number.length === 1) {
 			return parseFloat(number[0]);
@@ -26,11 +24,12 @@ function ConvertHandler() {
 
 	this.getUnit = function (input) {
 		var result = "";
-		var unit = input.match(new RegExp("/[a-z].*/i"));
-		if (unit.length > 1) {
+		var unit = input.match(/[a-z].*/i);
+		if (!unit || unit.length > 1) {
 			result = "invalid unit";
 		} else {
 			unit = unit[0].toLowerCase();
+			console.log(unit);
 			switch (unit) {
 				case "gal":
 				case "l":

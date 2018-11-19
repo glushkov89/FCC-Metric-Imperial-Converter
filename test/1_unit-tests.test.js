@@ -55,18 +55,18 @@ suite("Unit Tests", function () {
 	suite("Function convertHandler.getUnit(input)", function () {
 		test("For Each Valid Unit Inputs", function (done) {
 			var input = [
-				"gal",
-				"l",
-				"mi",
-				"km",
-				"lbs",
-				"kg",
-				"GAL",
-				"L",
-				"MI",
-				"KM",
-				"LBS",
-				"KG"
+				"34gal",
+				"1/2l",
+				"3/16mi",
+				"356.4km",
+				"2/12lbs",
+				"1kg",
+				"2GAL",
+				"1L",
+				"1/16MI",
+				"3.175KM",
+				"76.25LBS",
+				"9KG"
 			];
 			var expect = [
 				"gal",
@@ -89,7 +89,7 @@ suite("Unit Tests", function () {
 		});
 
 		test("Unknown Unit Input", function (done) {
-			var input = ["", "ton", "sdvdsvs", "_kg", "kg to lb"];
+			var input = ["", "ton", "sdvdsvs", "kg_", "kg to lb"];
 			input.forEach(function (ele) {
 				assert.equal(convertHandler.getUnit(ele), "invalid unit");
 			});
@@ -139,23 +139,30 @@ suite("Unit Tests", function () {
 		});
 
 		test("L to Gal", function (done) {
+			var input = [5, "l"];
+			var expected = 1.32086;
+			assert.approximately(
+				convertHandler.convert(input[0], input[1]),
+				expected,
+				0.1
+			); //0.1 tolerance
 			done();
 		});
 
 		test("Mi to Km", function (done) {
-			done();
+			done('Not implemented.');
 		});
 
 		test("Km to Mi", function (done) {
-			done();
+			done('Not implemented.');
 		});
 
 		test("Lbs to Kg", function (done) {
-			done();
+			done('Not implemented.');
 		});
 
 		test("Kg to Lbs", function (done) {
-			done();
+			done('Not implemented.');
 		});
 	});
 });
