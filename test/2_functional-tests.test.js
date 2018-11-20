@@ -16,10 +16,10 @@ const tolerance = 0.0001;
 chai.use(chaiHttp);
 
 suite("Functional Tests", function () {
-	after(function (done) {
-		server.close();
-		done();
-	});
+	// after(function (done) {
+	// 	server.close();
+	// 	done();
+	// });
 	suite("Routing Tests", function () {
 		suite("GET /api/convert => conversion object", function () {
 			test("Convert 10L (valid input)", function (done) {
