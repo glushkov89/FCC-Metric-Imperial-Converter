@@ -44,20 +44,22 @@ app.use(function (req, res, next) {
 });
 
 //Start our server and tests!
-var myApp = app.listen(port, function () {
-	console.log("Listening on port " + port);
-	if (process.env.NODE_ENV === "test") {
-		console.log("Running Tests...");
-		setTimeout(function () {
-			try {
-				runner.run();
-			} catch (e) {
-				var error = e;
-				console.log("Tests are not valid:");
-				console.log(error);
-			}
-		}, 1500);
-	}
-});
+if (!module.parent) {
+	app.listen(port, function () {
+		console.log("Listening on port " + port);
+		if (process.env.NODE_ENV === "test") {
+			console.log("Running Tests...");
+			setTimeout(function () {
+				try {
+					runner.run();
+				} catch (e) {
+					var error = e;
+					console.log("Tests are not valid:");
+					console.log(error);
+				}
+			}, 1500);
+		}
+	});
+}
 
-module.exports = myApp; //for testing
+module.exports = app; //for testing
