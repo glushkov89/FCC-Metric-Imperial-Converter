@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./public/style.css" integrity="sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+  <link rel="stylesheet" href="/public/style.css" integrity="sha256-/gpWXHhC3NlpZv95p26Z5zRRY16jigp6rU17aQ1iRZ4="
     crossorigin="anonymous">
 </head>
 
@@ -18,7 +18,7 @@
       ISQA_2 - Metric/Imp Converter
     </h1>
   </header>
-  <div id='userstories' style='margin-left: 5%; margin-top: 5%'>
+  <div id='userstories'>
     <h3>User Stories</h3>
     <ol>
       <li>I will help prevent the client from trying to guess(sniff) the MIME type.</li>
@@ -49,36 +49,21 @@
     <code>{initNum: 3.1, initUnit: 'mi', returnNum: 5.0000008, returnUnit: 'km', string: '3.1 miles converts to 5.00002
       kilometers'}</code>
   </div>
-  <hr style='margin: 50px'>
-  <div id='testui' style='margin-left: 5%'>
-    <h2 style="text-align: left">Front-End:</h2>
+  <hr id='top_hr'>
+  <div id='testui'>
+    <h2>Front-End:</h2>
     <form id="convertForm" class="border">
-      <input type="text" id="convertField" name="input" placeholder="3.1mi" style="width: 200px">
+      <input type="text" id="convertField" name="input" placeholder="3.1mi">
       <input id="convert" type="submit" value='Convert!'>
     </form>
     <p id='result'>Result</p>
     <code id='jsonResult'>Json Result</code>
   </div>
-  <hr style='margin: 50px; margin-top: 200px'>
+  <hr id='bottom_hr'>
   <!-- Your web-app is https, so your scripts need to be too -->
   <script src="https://code.jquery.com/jquery-2.2.1.min.js" integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
     crossorigin="anonymous"></script>
-  <script>
-    $(function () {
-      $('#convertForm').submit(function (event) {
-        event.preventDefault();
-        $.ajax({
-          url: '/api/convert',
-          type: 'get',
-          data: $('#convertForm').serialize(),
-          success: function (data) {
-            $('#result').text(data.string || data.error);
-            $('#jsonResult').text(JSON.stringify(data));
-          }
-        });
-      });
-    });
-  </script>
+  <script src="/public/submit_handler.js" integrity="sha256-64hmKBLO1ZU/ShVbiCH40f7ZsZVzfcAP0D27Ezf8jRo=" crossorigin="anonymous"></script>
 </body>
 
 </html>
