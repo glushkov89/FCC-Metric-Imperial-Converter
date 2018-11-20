@@ -15,18 +15,17 @@ function ConvertHandler() {
 		number = number.split("/");
 		if (number.length > 2) return "invalid number";
 		if (number.length === 1) {
-			return parseFloat(number[0]);
+			result = parseFloat(number[0])
 		} else {
 			result = (parseFloat(number[0])) / (parseFloat(number[1]));
-			return isNaN(result) ? 'invalid number' : result;
 		}
+		return isNaN(result) ? 'invalid number' : result;
 	};
 
 	this.getUnit = function (input) {
-		var result = "";
-		var unit = input.match(/[a-z].*/i);
-		if (!unit || unit.length > 1) {
-			result = "invalid unit";
+		var unit = input.match(/[a-z].*/i); //array of matches or null if no matches found
+		if (!unit) {
+			return "invalid unit";
 		} else {
 			unit = unit[0].toLowerCase();
 			switch (unit) {
@@ -36,14 +35,11 @@ function ConvertHandler() {
 				case "kg":
 				case "mi":
 				case "km":
-					result = unit;
-					break;
+					return unit;
 				default:
-					result = "invalid unit";
-					break;
+					return "invalid unit";
 			}
 		}
-		return result;
 	};
 
 	this.getReturnUnit = function (initUnit) {
