@@ -11,6 +11,7 @@ var assert = chai.assert;
 var ConvertHandler = require("../controllers/convertHandler.js");
 
 var convertHandler = new ConvertHandler();
+const tolerance = 0.0001;
 
 suite("Unit Tests", function () {
 	suite("Function convertHandler.getNum(input)", function () {
@@ -133,8 +134,8 @@ suite("Unit Tests", function () {
 			assert.approximately(
 				convertHandler.convert(input[0], input[1]),
 				expected,
-				0.1
-			); //0.1 tolerance
+				tolerance
+			);
 			done();
 		});
 
@@ -144,8 +145,8 @@ suite("Unit Tests", function () {
 			assert.approximately(
 				convertHandler.convert(input[0], input[1]),
 				expected,
-				0.1
-			); //0.1 tolerance
+				tolerance
+			);
 			done();
 		});
 
@@ -155,19 +156,19 @@ suite("Unit Tests", function () {
 			assert.approximately(
 				convertHandler.convert(input[0], input[1]),
 				expected,
-				0.1
-			); //0.1 tolerance
+				tolerance
+			);
 			done();
 		});
 
 		test("Km to Mi", function (done) {
 			var input = [2.45, "km"];
-			var expected = 3.94288;
+			var expected = 1.522363204792027;
 			assert.approximately(
 				convertHandler.convert(input[0], input[1]),
 				expected,
-				0.1
-			); //0.1 tolerance
+				tolerance
+			);
 			done();
 		});
 
@@ -177,8 +178,8 @@ suite("Unit Tests", function () {
 			assert.approximately(
 				convertHandler.convert(input[0], input[1]),
 				expected,
-				0.1
-			); //0.1 tolerance
+				tolerance
+			);
 			done();
 		});
 
@@ -188,8 +189,8 @@ suite("Unit Tests", function () {
 			assert.approximately(
 				convertHandler.convert(input[0], input[1]),
 				expected,
-				0.1
-			); //0.1 tolerance
+				tolerance
+			);
 			done();
 		});
 	});

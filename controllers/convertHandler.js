@@ -7,6 +7,12 @@
  */
 
 function ConvertHandler() {
+
+	//rounding function from http://www.jacklmoore.com/notes/rounding-in-javascript/
+	this.round = function (value, decimals) {
+		return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
+	}
+
 	this.getNum = function (input) {
 		var result = 0;
 		var number = input.replace(/[a-z].*/i, "");
@@ -19,11 +25,11 @@ function ConvertHandler() {
 		} else {
 			result = (parseFloat(number[0])) / (parseFloat(number[1]));
 		}
-		return isNaN(result) ? 'invalid number' : result;
+		return isNaN(result) ? 'invalid number' : this.round(result, 5);
 	};
 
 	this.getUnit = function (input) {
-		var unit = input.match(/[a-z].*/i); //array of matches or null if no matches found
+		var unit = input.match(/[a-z].*/i); //array of matches, or null if no matches found
 		if (!unit) {
 			return "invalid unit";
 		} else {
@@ -111,13 +117,13 @@ function ConvertHandler() {
 				result = initNum / lbsToKg;
 				break;
 			case "mi":
-				result = initNum / miToKm;
-				break;
-			case "km":
 				result = initNum * miToKm;
 				break;
+			case "km":
+				result = initNum / miToKm;
+				break;
 		}
-		return result;
+		return this.round(result, 5);
 	};
 
 	this.getString = function (initNum, initUnit, returnNum, returnUnit) {
