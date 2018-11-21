@@ -13,14 +13,18 @@ var runner = require("./test-runner");
 var port = process.env.PORT || 3000;
 
 var app = express();
-app.use(helmet());
-app.use(helmet.contentSecurityPolicy({
-	directives: {
-		//defaultSrc: ["'self'"],
-		styleSrc: ["'self'"],
-		scriptSrc: ["'self'", 'https://code.jquery.com/jquery-2.2.1.min.js']
+app.use(helmet({
+	contentSecurityPolicy: {
+		directives: {
+			defaultSrc: ["'self'"],
+			styleSrc: ["'self'"],
+			scriptSrc: ["'self'", 'https://code.jquery.com/jquery-2.2.1.min.js'],
+			imgSrc: ["'self'", 'https://glitch.com/hyperdev.com/favicon-app.ico'],
+			formAction: ["'self'"]
+		}
 	}
-}))
+}));
+
 
 app.use("/public", express.static(process.cwd() + "/public"));
 
@@ -36,10 +40,6 @@ app.use(bodyParser.urlencoded({
 //Index page (static HTML)
 app.route("/").get(function (req, res) {
 	res.sendFile(process.cwd() + "/views/index.html");
-});
-//Stylesheet (static CSS)
-app.route("/public/style.css").get(function (req, res) {
-	res.sendFile(process.cwd() + "/public/style.css");
 });
 
 //For FCC testing purposes
